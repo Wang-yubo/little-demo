@@ -1,19 +1,27 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <m-header></m-header>
+    <tab></tab> 
+    <router-view></router-view>
   </div>
 </template>
 
-<style lang="stylus">
-#app
-  font-family Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  margin-top 60px
+<script>
+import Mheader from "./components/m-header/m-header.vue"
+import tab from './components/tab/tab'
+export default {
+  name:"app",
+  components:{
+    "m-header":Mheader,
+    tab
+  }
+}
+</script>
+
+
+
+<style lang="stylus" scoped>
+  @import "./common/stylus/variable.styl"
+  #app
+    color:$color-theme
 </style>
