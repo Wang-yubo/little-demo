@@ -18,22 +18,27 @@ request({
         let arr = [];
         //* 遍历categorylist,拿到id,cover,title放到arr里面
         categorylist.forEach(list => {
-            if (list.id) {
+            if (list.time) {
+                arr.push({
+                    id: list.time,
+                    title: list.title,
+                    cover: list.cover
+                })
+            } else {
                 arr.push({
                     id: list.id,
                     cover: list.cover,
                     title: list.title
                 })
             }
+            recommendTable.create({
+                category,
+                categoryList: arr
+            }).then(() => {
+                console.log("写入数据成功");
+            }).catch((err) => {
+                throw err;
+            })
         });
-        //* 往表里面传数据
-        recommendTable.create({
-            category,
-            categoryList: arr
-        }).then(() => {
-            console.log("写入数据成功");
-        }).catch((err) => {
-            throw err;
-        })
-    });
+    })
 })

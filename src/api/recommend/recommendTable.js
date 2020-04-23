@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema;
-mongoose.connect("mongodb://localhost:27017/rumeng", {
+mongoose.connect("mongodb+srv://wyb:wyb123..@cluster0-nupid.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
@@ -30,7 +30,7 @@ let recommendShema = new Schema({
     }]
 })
 
-let recommendData = mongoose.model("recommendData", recommendShema)
+let recommendDatas = mongoose.model("recommendData", recommendShema)
 module.exports = {
-    recommendTable: recommendData
+    recommendTable: recommendDatas
 }
