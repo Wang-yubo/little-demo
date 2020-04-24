@@ -36,6 +36,14 @@ export default {
     refreshDelay: {
       type: Number,
       default: 20
+    },
+    scrollY:{
+      type: Boolean,
+      default: true
+    },
+    scrollX:{
+      type: Boolean,
+      default: true
     }
   },
   mounted() {
@@ -54,7 +62,8 @@ export default {
       this.scroll = new BScroll(this.$refs.wrapper, {
         //新来一个实例
         probeType: this.probeType,
-        click: this.click
+        click: this.click,
+        scrollY:this.scrollY
       });
       if (this.listenScroll) {
         let me = this;

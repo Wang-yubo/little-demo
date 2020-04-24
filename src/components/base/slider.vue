@@ -54,7 +54,7 @@ export default {
       }
       this._setSliderWidth(true);
       this.slider.refresh();
-    });
+    },false);
   },
   destroyed() {
     clearTimeout(this.timer);

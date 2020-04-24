@@ -1,5 +1,5 @@
 const request = require("request")
-const fs = require("fs")
+    // const fs = require("fs")
 const { recommendTable } = require("./recommendTable")
 request({
     method: "GET",
@@ -9,8 +9,8 @@ request({
         "_": 1576499692284,
         "data": `{ "comm": { "g_tk": 155916146, "uin": 647789540, "format": "json", "inCharset": "utf-8", "outCharset": "utf-8", "notice": 0, "platform": "h5", "needNewCode": 1 }, "MusicHallHomePage": { "module": "music.musicHall.MusicHallPlatform", "method": "MobileWebHome", "param": { "ShelfId": [101, 102, 161] } }, "hotkey": { "module": "tencent_musicsoso_hotkey.HotkeyService", "method": "GetHotkeyForQQMusicMobile", "param": { "remoteplace": "txt.miniapp.wxada7aab80ba27074", "searchid": "1559616839293" } } }`
     }
-}, async(err, res, body) => {
-    await recommendTable.deleteMany();
+}, async(err, req, body) => {
+    await recommendTable.deleteMany({});
     let data = JSON.parse(body).MusicHallHomePage.data.v_shelf;
     data.forEach(item => {
         let category = item.title_template; //* 获取分区的名称
@@ -27,18 +27,18 @@ request({
             } else {
                 arr.push({
                     id: list.id,
-                    cover: list.cover,
-                    title: list.title
+                    title: list.title,
+                    cover: list.cover
                 })
             }
-            recommendTable.create({
-                category,
-                categoryList: arr
-            }).then(() => {
-                console.log("写入数据成功");
-            }).catch((err) => {
-                throw err;
-            })
         });
+        recommendTable.create({
+            category,
+            categoryList: arr
+        }).then(() => {
+            console.log("写入数据成功");
+        }).catch((err) => {
+            throw err;
+        })
     })
 })

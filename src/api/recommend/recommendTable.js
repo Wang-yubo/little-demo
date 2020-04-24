@@ -30,7 +30,7 @@ let recommendShema = new Schema({
     }]
 })
 
-let recommendDatas = mongoose.model("recommendData", recommendShema)
+let recommendData = mongoose.model("recommendData", recommendShema)
 module.exports = {
-    recommendTable: recommendDatas
+    recommendTable: recommendData
 }
